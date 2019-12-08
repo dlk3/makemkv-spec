@@ -1,23 +1,31 @@
+%define  debug_package %{nil}
+
+
 Name:           makemkv
 Version:        1.14.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Software to convert blu-ray and dvd to mkv
 
-License:        GPL
+License:        Proprietary & GPLv2
 URL:            https://www.makemkv.com/forum/viewtopic.php?f=3&t=224
 Source0:        https://www.makemkv.com/download/%{name}-bin-%{version}.tar.gz
 Source1:        https://www.makemkv.com/download/%{name}-oss-%{version}.tar.gz
-BuildArch:      x86_64
+BuildArch:		x86_64
 
-BuildRequires:	ffmpeg-devel
-BuildRequires:	qt5-devel
-BuildRequires:	openssl-devel
+BuildRequires:	gcc-c++
+BuildRequires:  pkgconfig(Qt5Core)
+BuildRequires:  pkgconfig(Qt5DBus)
+BuildRequires:  pkgconfig(Qt5Gui)
+BuildRequires:  pkgconfig(Qt5Widgets)
+BuildRequires:  pkgconfig(expat)
+BuildRequires:  pkgconfig(libavcodec)
+BuildRequires:  pkgconfig(libssl)
+BuildRequires:  pkgconfig(zlib)
 
 Provides:		libdriveio.so.0()(64bit)
 Provides:		libmakemkv.so.1()(64bit)
 Provides:		libmmbd.so.0()(64bit)
 
-%define  debug_package %{nil}
 
 %description
 MakeMKV is your one-click solution to convert video that you own into 
@@ -30,12 +38,12 @@ it in any way.
 
 %prep
 %setup -n %{name}-bin-%{version}
-%setup -n %{name}-oss-%{version} -T -b 1
+%setup -n %{name}-oss-%{version} -T -b 1 -D
 
 
 %build
 cd ../%{name}-oss-%{version}
-%configure
+%configure --enable-allcodecs
 make %{?_smp_mflags}
 
 
@@ -52,27 +60,26 @@ make install DESTDIR=%{buildroot}
 %license License.txt
 %{_bindir}/makemkv
 %{_bindir}/makemkvcon
-%{_libdir}/libdriveio.so.0
-%{_libdir}/libmakemkv.so.1
-%{_libdir}/libmmbd.so.0
+%{_libdir}/libdriveio.so*
+%{_libdir}/libmakemkv.so*
+%{_libdir}/libmmbd.so*
 %{_datadir}/MakeMKV/appdata.tar
 %{_datadir}/MakeMKV/blues.jar
 %{_datadir}/MakeMKV/blues.policy
 %{_datadir}/applications/makemkv.desktop
-%{_datadir}/icons/hicolor/128x128/apps/makemkv.png
-%{_datadir}/icons/hicolor/16x16/apps/makemkv.png
-%{_datadir}/icons/hicolor/22x22/apps/makemkv.png
-%{_datadir}/icons/hicolor/32x32/apps/makemkv.png
-%{_datadir}/icons/hicolor/64x64/apps/makemkv.png
+%{_datadir}/icons/hicolor/*/apps/makemkv.png
 
 
 %post
 echo -e "\n  **********************************************************************"
-echo "  *  Before running makemkv for the first time be sure to delete your  *"
-echo -e "  *  \$HOME/.MakeMKV directory, if one exists.                          *"
+echo "  *  Before running a new release of makemkv for the first time be     *"
+echo -e "  *  sure to delete your \$HOME/.MakeMKV directory, if one exists.      *"
 echo "  **********************************************************************"
 
 
 %changelog
-* Sun Dec  7 2019 David King <dave@daveking.com>
+* Sun Dec 8 2019 David King <dave@daveking.com> - 1.14.7-2
+	Add --enable-allcodecs to configure
+* Sat Dec 7 2019 David King <dave@daveking.com> - 1.14.7-1
+	Initial Version
 - 
