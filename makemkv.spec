@@ -12,15 +12,10 @@ Source0:        https://www.makemkv.com/download/%{name}-bin-%{version}.tar.gz
 Source1:        https://www.makemkv.com/download/%{name}-oss-%{version}.tar.gz
 BuildArch:		x86_64
 
+BuildRequires:	qt5-devel
+BuildRequires:	ffmpeg-devel
+BuildRequires:	openssl-devel
 BuildRequires:	gcc-c++
-BuildRequires:  pkgconfig(Qt5Core)
-BuildRequires:  pkgconfig(Qt5DBus)
-BuildRequires:  pkgconfig(Qt5Gui)
-BuildRequires:  pkgconfig(Qt5Widgets)
-BuildRequires:  pkgconfig(expat)
-BuildRequires:  pkgconfig(libavcodec)
-BuildRequires:  pkgconfig(libssl)
-BuildRequires:  pkgconfig(zlib)
 
 Provides:		libdriveio.so.0()(64bit)
 Provides:		libmakemkv.so.1()(64bit)
