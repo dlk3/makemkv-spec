@@ -1,29 +1,27 @@
 %define  debug_package %{nil}
 
+Name:		makemkv
+Version:	1.14.7
+Release:	2%{?dist}
+Summary:	Software to convert blu-ray and dvd to mkv
 
-Name:           makemkv
-Version:        1.14.7
-Release:        3%{?dist}
-Summary:        Software to convert blu-ray and dvd to mkv
+License:	Proprietary & GPLv2
+URL:		https://www.makemkv.com/forum/viewtopic.php?f=3&t=224
+Source0:	https://www.makemkv.com/download/%{name}-bin-%{version}.tar.gz
+Source1:	https://www.makemkv.com/download/%{name}-oss-%{version}.tar.gz
+BuildArch:	x86_64
 
-License:        Proprietary & GPLv2
-URL:            https://www.makemkv.com/forum/viewtopic.php?f=3&t=224
-Source0:        https://www.makemkv.com/download/%{name}-bin-%{version}.tar.gz
-Source1:        https://www.makemkv.com/download/%{name}-oss-%{version}.tar.gz
-BuildArch:		x86_64
-
-Obsoletes:		libaacs
 
 BuildRequires:	qt5-devel
 BuildRequires:	ffmpeg-devel
 BuildRequires:	openssl-devel
 BuildRequires:	gcc-c++
 
-Provides:		libdriveio.so.0()(64bit)
-Provides:		libmakemkv.so.1()(64bit)
-Provides:		libmmbd.so.0()(64bit)
-Provides:		libaacs.so.0()(64bit)
-Provides:		libbdplus.so.0()(64bit)
+Provides:	libdriveio.so.0()(64bit)
+Provides:	libmakemkv.so.1()(64bit)
+Provides:	libmmbd.so.0()(64bit)
+Provides:	libaacs.so.0()(64bit)
+Provides:	libbdplus.so.0()(64bit)
 
 
 %description
@@ -53,8 +51,6 @@ cd ../%{name}-bin-%{version}
 mkdir tmp
 echo "accepted" >tmp/eula_accepted
 make install DESTDIR=%{buildroot}
-%{__ln_s} libmmbd.so.0 %{buildroot}%{_libdir}/libaacs.so.0
-%{__ln_s} libmmbd.so.0 %{buildroot}%{_libdir}/libbdplus.so.0
 
 
 %files
@@ -64,8 +60,6 @@ make install DESTDIR=%{buildroot}
 %{_libdir}/libdriveio.so.0
 %{_libdir}/libmakemkv.so.1
 %{_libdir}/libmmbd.so.0
-%{_libdir}/libaacs.so.0
-%{_libdir}/libbdplus.so.0
 %{_datadir}/MakeMKV/appdata.tar
 %{_datadir}/MakeMKV/blues.jar
 %{_datadir}/MakeMKV/blues.policy
@@ -85,8 +79,6 @@ echo "  **********************************************************************"
 
 
 %changelog
-* Mon Dec 9 2019 David King <dave@daveking.com> - 1.14.7-3
-	Add libmmbd->libaacs support for VLC and others
 * Sun Dec 8 2019 David King <dave@daveking.com> - 1.14.7-2
 	Add --enable-allcodecs to configure
 * Sat Dec 7 2019 David King <dave@daveking.com> - 1.14.7-1
