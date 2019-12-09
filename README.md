@@ -8,10 +8,3 @@ an installation RPM file for `makemkv` for my Fedora 30 desktop.  In
 addition, I posted the RPMs that I built in the
 [Releases tab](https://github.com/dlk3/makemkv-spec/releases) of this
 repository
-
-`makemkv` provides a replacement for the `libaacs` and `libbdplus` 
-libraries that adds Blu-Ray disc playback support to the VLC app and any 
-others that are based on `libbluray`.  I have included the necessary
-setup for this in this `makemkv` package.  See 
-[this makemkv forum post](https://www.makemkv.com/forum/viewtopic.php?f=3&t=7009)
-for additional details.
