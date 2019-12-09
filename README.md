@@ -10,7 +10,7 @@ addition, I posted the RPMs that I built in the
 repository
 
 `makemkv` provides a replacement for the `libaacs` library RPM that
-adds Blu-Ray decryting support to the VLC app and any others that use
-`libaacs`.  I have included the necessary setup for this in my `makemkv`
-package.  See [this makemkv forum post](https://www.makemkv.com/forum/viewtopic.php?f=3&t=7009)
+adds Blu-Ray decryption support to the VLC app and any others that use
+`libaacs`.  I have included the necessary setup for this in this 
+`makemkv` package.  See [this makemkv forum post](https://www.makemkv.com/forum/viewtopic.php?f=3&t=7009)
 for additional details.
