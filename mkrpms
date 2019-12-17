@@ -35,11 +35,8 @@ else
 	SOURCE1=$(echo "$SOURCE1" | sed "s/%{name}/${NAME}/;s/%{version}/${VERSION}/")
 	wget -O "${HOME}/rpmbuild/SOURCES/$(basename "$SOURCE1")" "$SOURCE1"
 
-	#  Build the packages.  Try twice, in case of an Access Exception, which happens occasionally
-	if ! rpmbuild -ba "$SPECFILE"; then
-		echo -e "\nrpmbuild failed, retrying rpmbuild ..."
-		rpmbuild -ba "$SPECFILE"
-	fi
+	#  Build the packages
+	rpmbuild -ba "$SPECFILE"
 
 	echo -e "\nCopying RPM files to host system ..."
 	mv ${HOME}/rpmbuild/RPMS/x86_64/${NAME}-${VERSION}-${RELEASE}.*.x86_64.rpm /home/dlk/rpmbuild/RPMS/x86_64/
